@@ -7,7 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>World Cup</title>
+    <title>World-Cup</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </head>
 
 
@@ -37,6 +41,7 @@
 
 #container {
     height: 400px;
+    
 }
 
 .highcharts-data-table table {
@@ -105,6 +110,7 @@
     .highcharts-data-table th {
         font-weight: 600;
         padding: 0.5em;
+      
     }
 
     .highcharts-data-table td,
@@ -121,6 +127,133 @@
     .highcharts-data-table tr:hover {
         background: #f1f7ff;
     }
+    .form-control{
+        height: 10%;
+    }
+
+
+    @import "https://code.highcharts.com/css/highcharts.css";
+
+.highcharts-figure,
+.highcharts-data-table table {
+  min-width: 310px;
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+
+.highcharts-yaxis .highcharts-axis-line {
+  stroke-width: 2px;
+}
+
+/* Link the series colors to axis colors */
+.highcharts-color-0 {
+  fill: #7cb5ec;
+  stroke: #7cb5ec;
+}
+
+.highcharts-axis.highcharts-color-0 .highcharts-axis-line {
+  stroke: #7cb5ec;
+}
+
+.highcharts-axis.highcharts-color-0 text {
+  fill: #7cb5ec;
+}
+
+.highcharts-color-1 {
+  fill: #90ed7d;
+  stroke: #90ed7d;
+}
+
+.highcharts-axis.highcharts-color-1 .highcharts-axis-line {
+  stroke: #90ed7d;
+}
+
+.highcharts-axis.highcharts-color-1 text {
+  fill: #90ed7d;
+}
+
+#container4 {
+  height: 400px;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+  min-width: 310px;
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
 </style>
 
 <body>
@@ -237,10 +370,7 @@
 
     <div id="twoGraphs"> </div>
 
-
-
-
-
+    <figure class="highcharts-figure"><div id="container4"></div></figure>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -249,323 +379,7 @@
 
 
 
-
-    <script>
-        const url = `https://countryapi.io/api/all?apikey=cqynJmw1OZ3b894SNRcDIJLLcc7A7sgqYX9T7PAB`
-        const countries = ['Canada', 'Costa Rica', 'Mali', 'Bahrain', 'ethiopia', 'France', 'Finland', 'Germany', 'Kenya', 'Nevada',
-            'South Dakota', 'Sudan', 'Senegal', 'Russia', 'Philippines', 'Latvia']
-
-
-        const btn = document.getElementById('seebtn')
-
-        btn.addEventListener('click', generate)
-        var group1 = [];
-        var group2 = [];
-        var group3 = [];
-        var group4 = [];
-
-        function generate() {
-            let v = [];
-            for (var x = 0; x < 100; x++) {
-                let w = Math.floor(Math.random() * 16);
-                if (v.includes(countries[w])) {
-                    w = Math.floor(Math.random() * 16);
-                }
-                else {
-                    v.push(countries[w]);
-                }
-            }
-
-            for (var j = 0; j < 4; j++) {
-                var tab = document.querySelector('.lists');
-                tab.innerHTML = `
-                <div class=" cards card col-lg-3 " style="width: 15rem; background-color: rgb(96,114,108); margin: 10px ">
-            <div class="card_cover">
-                <h5 class="card-title text-white text-center m-3">---MATCH---</h5>
-                <div id="container1"></div>
-                <div class="card-body row">
-                    <p class="col-lg-6 " id="clist1"> </p>
-                    <p class="col-lg-6 highcharts-description">
-                        <input type="number" class="form-control card-1" placeholder="score-1" id="score-1" style="background: transparent;">
-                        &nbsp; 
-                         <input type="number" class="form-control card-1" placeholder="score-2" id="score-2" style="background: transparent;">
-                         &nbsp; 
-                         <input type="number" class="form-control card-1" placeholder="score-3" id="score-3" style="background: transparent;">
-                         &nbsp; 
-                         <input type="number" class="form-control card-1" placeholder="score-4" id="score-4" style="background: transparent;">
-                        <br> <i class="bi bi-trophy" style="font-size: 20px"></i>                           
-                         </p>
-                    <a href="#" class="links btn btn-success " id="g1" onclick="graph(this.id)">Analyze Graph</a>
-                </div>
-            </div>
-        </div> 
-        
-        <div class=" cards card col-lg-3 " style="width: 15rem; background-color: rgb(96,114,108); margin: 10px">
-            <div class="card_cover">
-                <h5 class="card-title text-white text-center m-3">---MATCH---</h5>
-                <div id="container1"></div>
-                <div class="card-body row">
-                    <p class="col-lg-6 " id="clist2"> </p>
-                    <p class="col-lg-6 highcharts-description">
-                        <input type="number" class="form-control card-2" placeholder="score-1" id="score-5" style="background: transparent;">
-                        &nbsp;
-                         <input type="number" class="form-control card-2" placeholder="score-2" id="score-6" style="background: transparent;"> 
-                         &nbsp; 
-                         <input type="number" class="form-control card-2" placeholder="score-3" id="score-7" style="background: transparent;">
-                         &nbsp; 
-                         <input type="number" class="form-control card-2" placeholder="score-4" id="score-8" style="background: transparent;">
-                        <br> <i class="bi bi-trophy" style="font-size: 20px"></i>
-                         </p>
-                    <a href="#" class="links btn btn-success " id="g2" onclick="graph(this.id)">Analyze Graph</a>
-                </div>
-            </div>
-        </div> 
-        <div class="cards card col-lg-3 " style="width: 15rem; background-color: rgb(96,114,108); margin: 10px ">
-            <div class="card_cover">
-                <h5 class="card-title text-white text-center m-3">---MATCH---</h5>
-                <div id="container1"></div>
-                <div class="card-body row">
-                    <p class="col-lg-6"  id="clist3"> </p>
-                    <p class="col-lg-6 highcharts-description">
-                        <input type="number" class="form-control card-3" placeholder="score-1" id="score-9" style="background: transparent;">
-                        &nbsp;
-                         <input type="number" class="form-control card-3" placeholder="score-2" id="score-10" style="background: transparent;">
-                         &nbsp; 
-                         <input type="number" class="form-control card-3" placeholder="score-3" id="score-11" style="background: transparent;">
-                         &nbsp; 
-                         <input type="number" class="form-control card-3" placeholder="score-4" id="score-12" style="background: transparent;">
-                        <br> <i class="bi bi-trophy" style="font-size: 20px"></i>
-                         </p>
-                    <a href="#" class="links btn btn-success " id="g3" onclick="graph(this.id)">Analyze Graph</a>
-                </div>
-            </div>
-        </div>
-         <div class=" cards card col-lg-3 " style="width: 15rem; background-color: rgb(96,114,108); margin: 10px ">
-            <div class="card_cover">
-                <h5 class="card-title text-white text-center m-3">---MATCH---</h5>
-                <div id="container1"></div>
-                <div class="card-body row">
-                    <p class="col-lg-6 " id="clist4"> </p>
-                    <p class="col-lg-6 highcharts-description">
-                        <input type="number" class="form-control card-4" placeholder="score-1" id="score-13" style="background: transparent;">
-                        &nbsp;
-                         <input type="number" class="form-control card-4" placeholder="score-2" id="score-14" style="background: transparent;">
-                         &nbsp; 
-                         <input type="number" class="form-control card-4" placeholder="score-3" id="score-15" style="background: transparent;">
-                         &nbsp; 
-                         <input type="number" class="form-control card-4" placeholder="score-4" id="score-16" style="background: transparent;">
-                        <br> <i class="bi bi-trophy" style="font-size: 20px"></i>
-                         </p>
-                    <a href="#" class="links btn btn-success" id="g4" onclick="graph(this.id)">Analyze Graph</a>
-                </div>
-            </div>
-        </div>
-        `
-
-
-                var wid = 0;
-                var wid2 = 0;
-                var wid3 = 0;
-                var wid4 = 0;
-                for (var i = 0; i < 16; i++) {
-                    wid = document.getElementById('clist1')
-                    wid.innerHTML += v[i] + "<br><br>";
-
-                    wid2 = document.getElementById('clist2')
-                    wid2.innerHTML += v[++i] + "<br><br>";
-
-                    wid3 = document.getElementById('clist3')
-                    wid3.innerHTML += v[++i] + "<br><br>";
-
-                    wid4 = document.getElementById('clist4')
-                    wid4.innerHTML += v[++i] + "<br><br>";
-                }
-            }
-            //console.log(v) 
-            var j = 0;
-            for (var i = 0, j = 0; i < 16, j < 4; i++, j++) {
-                group1[j] = v[i]
-
-                group2[j] = v[++i]
-
-                group3[j] = v[++i]
-
-                group4[j] = v[++i]
-            }
-            //console.log(group1)
-        }
-
-
-
-        function graph(req_id) {
-            var c1_score1 = 0;
-            var c1_score2 = 0;
-            var c1_score3 = 0;
-            var c1_score4 = 0;
-            var country_n1 = 0
-            var country_n2 = 0
-            var country_n3 = 0
-            var country_n4 = 0
-            if (req_id == 'g1') {
-                country_n1 = group1[0]
-                country_n2 = group1[1]
-                country_n3 = group1[2]
-                country_n4 = group1[3]
-
-             c1_score1 = Number(document.getElementById('score-1').value)
-             c1_score2 = Number(document.getElementById('score-2').value)
-             c1_score3 = Number(document.getElementById('score-3').value)
-             c1_score4 = Number(document.getElementById('score-4').value)
-            }
-            else if (req_id == 'g2') {
-                country_n1 = group2[0]
-                country_n2 = group2[1]
-                country_n3 = group2[2]
-                country_n4 = group2[3] 
-
-             c1_score1 = Number(document.getElementById('score-5').value)
-             c1_score2 = Number(document.getElementById('score-6').value)
-             c1_score3 = Number(document.getElementById('score-7').value)
-             c1_score4 = Number(document.getElementById('score-8').value)
-            }
-            else if (req_id == 'g3') {
-                country_n1 = group3[0]
-                country_n2 = group3[1]
-                country_n3 = group3[2]
-                country_n4 = group3[3]
-
-             c1_score1 = Number(document.getElementById('score-9').value)
-             c1_score2 = Number(document.getElementById('score-10').value)
-             c1_score3 = Number(document.getElementById('score-11').value)
-             c1_score4 = Number(document.getElementById('score-12').value)
-            }
-            else {
-                country_n1 = group4[0]
-                country_n2 = group4[1]
-                country_n3 = group4[2]
-                country_n4 = group4[3]
-
-             c1_score1 = Number(document.getElementById('score-13').value)
-             c1_score2 = Number(document.getElementById('score-14').value)
-             c1_score3 = Number(document.getElementById('score-15').value)
-             c1_score4 = Number(document.getElementById('score-16').value)
-            }
-
-            var charts = `<div class="row">
-                <figure class="highcharts-figure1">
-                <div id="container3"></div> </figure>
-            <figure class="highcharts-figure col">
-                            <div id="container"></div>
-                            <p class="highcharts-description"></p>
-                </figure>
-                </div>`
-
-            var twographs = document.getElementById('twoGraphs')
-            twographs.innerHTML = charts
-
-
-    Highcharts.chart('container', {
-    chart: {
-        type: 'bar'
-    },
-    title: {
-        text: 'FOOTBALL MATCH',
-        align: 'center'
-    },
-    xAxis: {
-        categories: [country_n1, country_n2, country_n3, country_n4 ],
-        title: {
-            text: null
-        }
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'SCORE',
-            align: 'high'
-        },
-        labels: {
-            overflow: 'justify'
-        }
-    },
-    tooltip: {
-        valueSuffix: ' millions'
-    },
-    plotOptions: {
-        bar: {
-            dataLabels: {
-                enabled: true
-            }
-        }
-    },
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'top',
-        x: -40,
-        y: 80,
-        floating: true,
-        borderWidth: 1,
-        backgroundColor:
-            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-        shadow: true
-    },
-    credits: {
-        enabled: false
-    },
-    series: [{
-        name: 'Scored-pts',
-        data: [c1_score1, c1_score2, c1_score3, c1_score4]
-    }]
-});
-
-
-
-
-            Highcharts.chart('container3', {
-                chart: {
-                    type: 'variablepie'
-                },
-                title: {
-                    text: 'FOOTBALL MATCH',
-                    align: 'center'
-                },
-                tooltip: {
-                    headerFormat: '',
-                    pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
-                        'score: <b>{point.y}</b><br/>'
-                },
-                series: [{
-                    minPointSize: 10,
-                    innerSize: '20%',
-                    zMin: 0,
-                    name: 'countries',
-                    data: [{
-                        name: country_n1,
-                        y: c1_score1,
-                        z: 92
-                    }, {
-                        name: country_n2,
-                        y: c1_score2,
-                        z: 119
-                    }, {
-                        name: country_n3,
-                        y: c1_score3,
-                        z: 121
-                    }, {
-                        name: country_n4,
-                        y: c1_score4,
-                        z: 136
-                    }]
-                }]
-            });
-
-        }
-
-
-
-
-    </script>
+<script src="script.js"></script>
 
 
 
